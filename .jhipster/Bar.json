@@ -1,0 +1,76 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "2",
+            "fieldValidateRulesMaxlength": 20
+        },
+        {
+            "fieldName": "photo",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "startDate",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "endDate",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "coverCharge",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "adresse",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "specialEvent",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "from4To6",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "from6To8",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "from8To10",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "from10ToMid",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "fromMidTo2",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "from2To4",
+            "fieldType": "Integer"
+        }
+
+    ],
+    "changelogDate": "20171026095733",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "bar",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

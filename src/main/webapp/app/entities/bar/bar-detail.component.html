@@ -1,0 +1,47 @@
+
+<div *ngIf="bar">
+    <h2><span>Bar</span> {{bar.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <div class="row jh-entity-details">
+        <div class="col-md-6">
+                    <img class="img-fluid" [src]="'data:' + bar.photoContentType + ';base64,' + bar.photo"  alt="bar image"/>
+        </div>
+        <div class="col-md-6">
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{bar.name}}</span>
+        </dd>
+        <dt><span>Cover Charge</span></dt>
+        <dd>
+            <span>{{bar.coverCharge}}</span>
+        </dd>
+        <dt><span>Adresse</span></dt>
+        <dd>
+            <span>{{bar.adresse}}</span>
+        </dd>
+        <dt><span>Type</span></dt>
+        <dd>
+            <span>{{bar.type}}</span>
+        </dd>
+        </div>
+    </div>
+    <div class="alert mt-3 alert-danger blink">
+        SPECIAL EVENT TONIGHT {{bar.specialEvent}}
+    </div>
+    <div class="mt-3">  </div>
+    <p-chart type="bar" [data]="data"></p-chart>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'bar/'+ bar.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

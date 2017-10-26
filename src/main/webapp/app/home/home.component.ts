@@ -3,6 +3,8 @@ import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { Account, LoginModalService, Principal } from '../shared';
+import {Bar} from "../entities/bar/bar.model";
+import {BarService} from "../entities/bar/bar.service";
 
 @Component({
     selector: 'jhi-home',
@@ -15,15 +17,19 @@ import { Account, LoginModalService, Principal } from '../shared';
 export class HomeComponent implements OnInit {
     account: Account;
     modalRef: NgbModalRef;
-
+    bars: Bar[];
+    filterVar: string;
     constructor(
         private principal: Principal,
         private loginModalService: LoginModalService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private barService: BarService
     ) {
     }
 
     ngOnInit() {
+        this.barService.query().subscribe((req) => this.bars = req.json);
+
         this.principal.identity().then((account) => {
             this.account = account;
         });

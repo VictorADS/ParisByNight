@@ -1,0 +1,117 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myBarLabel">Create or edit a Bar</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!bar.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="bar.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="bar.name" minlength="2" maxlength="20" />
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.minlength">
+                   This field is required to be at least 2 characters.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.maxlength">
+                   This field cannot be longer than 20 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_photo">Photo</label>
+            <div>
+                <img [src]="'data:' + bar.photoContentType + ';base64,' + bar.photo" style="max-height: 100px;" *ngIf="bar.photo" alt="bar image"/>
+                <div *ngIf="bar.photo" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{bar.photoContentType}}, {{byteSize(bar.photo)}}</span>
+                    <button type="button" (click)="clearInputImage('photo', 'photoContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_photo" (change)="setFileData($event, bar, 'photo', true)" accept="image/*"/>
+            </div>
+            <input type="hidden" class="form-control" name="photo" id="field_photo"
+                [(ngModel)]="bar.photo"  />
+            <input type="hidden" class="form-control" name="photoContentType" id="field_photoContentType"
+                [(ngModel)]="bar.photoContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_startDate">Start Date</label>
+            <input type="text" class="form-control" name="startDate" id="field_startDate"
+                [(ngModel)]="bar.startDate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_endDate">End Date</label>
+            <input type="text" class="form-control" name="endDate" id="field_endDate"
+                [(ngModel)]="bar.endDate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_coverCharge">Cover Charge</label>
+            <input type="number" class="form-control" name="coverCharge" id="field_coverCharge"
+                [(ngModel)]="bar.coverCharge"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_adresse">Adresse</label>
+            <input type="text" class="form-control" name="adresse" id="field_adresse"
+                [(ngModel)]="bar.adresse"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_type">Type</label>
+            <input type="text" class="form-control" name="type" id="field_type"
+                [(ngModel)]="bar.type"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_specialEvent">Special Event</label>
+            <input type="text" class="form-control" name="specialEvent" id="field_specialEvent"
+                [(ngModel)]="bar.specialEvent"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_from4To6">From 4 To 6</label>
+            <input type="number" class="form-control" name="from4To6" id="field_from4To6"
+                [(ngModel)]="bar.from4To6"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_from6To8">From 6 To 8</label>
+            <input type="number" class="form-control" name="from6To8" id="field_from6To8"
+                [(ngModel)]="bar.from6To8"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_from8To10">From 8 To 10</label>
+            <input type="number" class="form-control" name="from8To10" id="field_from8To10"
+                [(ngModel)]="bar.from8To10"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_from10ToMid">From 10 To Mid</label>
+            <input type="number" class="form-control" name="from10ToMid" id="field_from10ToMid"
+                [(ngModel)]="bar.from10ToMid"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_fromMidTo2">From Mid To 2</label>
+            <input type="number" class="form-control" name="fromMidTo2" id="field_fromMidTo2"
+                [(ngModel)]="bar.fromMidTo2"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_from2To4">From 2 To 4</label>
+            <input type="number" class="form-control" name="from2To4" id="field_from2To4"
+                [(ngModel)]="bar.from2To4"  />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

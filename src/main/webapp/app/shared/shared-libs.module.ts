@@ -6,6 +6,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgJhipsterModule } from 'ng-jhipster';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { CookieModule } from 'ngx-cookie';
+import { ChartModule } from 'primeng/primeng';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     imports: [
@@ -15,7 +17,9 @@ import { CookieModule } from 'ngx-cookie';
             alertAsToast: false,
         }),
         InfiniteScrollModule,
-        CookieModule.forRoot()
+        CookieModule.forRoot(),
+        ChartModule,
+        BrowserAnimationsModule
     ],
     exports: [
         FormsModule,
@@ -23,7 +27,9 @@ import { CookieModule } from 'ngx-cookie';
         CommonModule,
         NgbModule,
         NgJhipsterModule,
-        InfiniteScrollModule
+        InfiniteScrollModule,
+        BrowserAnimationsModule,
+        ChartModule
     ]
 })
 export class ParisByNightSharedLibsModule {}

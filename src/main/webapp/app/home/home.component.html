@@ -1,41 +1,15 @@
-<div class="row">
-    <div class="col-md-3">
-        <span class="hipster img-fluid rounded"></span>
+<div class="p-5">
+    <input type="text" placeholder="Filter by Name" class="form-control" [(ngModel)]="filterVar">
+    <div class="mt-2 d-flex flex-row">
+        <button class="btn btn-md" type="button">Filter </button>
+        <button class=" ml-2 btn btn-md" type="button">Trier par </button>
     </div>
-    <div class="col-md-9">
-        <h1 class="display-4">Welcome, Java Hipster!</h1>
-        <p class="lead">This is your homepage</p>
-
-        <div [ngSwitch]="isAuthenticated()">
-            <div class="alert alert-success" *ngSwitchCase="true">
-                <span *ngIf="account"
-                   > You are logged in as user "{{account.login}}". </span>
-            </div>
-
-            <div class="alert alert-warning" *ngSwitchCase="false">
-                <span>If you want to </span>
-                <a class="alert-link" (click)="login()">sign in</a><span>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").</span>
-            </div>
-            <div class="alert alert-warning" *ngSwitchCase="false">
-                <span>You don't have an account yet?</span>
-                <a class="alert-link" routerLink="register">Register a new account</a>
-            </div>
-        </div>
-
-        <p>
-            If you have any question on JHipster:
-        </p>
-
-        <ul>
-            <li><a href="http://www.jhipster.tech/" target="_blank" rel="noopener">JHipster homepage</a></li>
-            <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank" rel="noopener">JHipster on Stack Overflow</a></li>
-            <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" rel="noopener">JHipster bug tracker</a></li>
-            <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener">JHipster public chat room</a></li>
-            <li><a href="https://twitter.com/java_hipster" target="_blank" rel="noopener">follow @java_hipster on Twitter</a></li>
-        </ul>
-
-        <p>
-            <span>If you like JHipster, don't forget to give us a star on</span> <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener">GitHub</a>!
-        </p>
+</div>
+<div class="content row">
+    <div *ngFor="let bar of bars | pureFilter:filterVar:'name'" class=" col-lg-3 col-md-4 col-sm-6 col-xs-12">
+        <div class="d-flex flex-column bar-container mt-2 justify-content-center" [routerLink]="['../bar', bar.id ]">
+            <img class="img-responsive" [src]="'data:' + bar.photoContentType + ';base64,' + bar.photo" style="max-width: 500px; max-height:250px;" alt="bar image"/>
+            <h5 class="py-2 text-center bar-name-container rainbow-button">{{bar.name}}</h5>
+    </div>
     </div>
 </div>

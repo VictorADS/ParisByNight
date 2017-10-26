@@ -3,9 +3,26 @@ Bootstrap tweaks
 ===============================================================*/
 
 body, h1, h2, h3, h4 {
-    font-weight: 300;
+    font-weight: 500;
+    font-size: 18px;
 }
 
+.blink {
+    animation: blink-animation 2s steps(10, start) infinite;
+    -webkit-animation: blink-animation 2s steps(10, start) infinite;
+}
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+        background: yellow;
+    }
+}
+@-webkit-keyframes blink-animation {
+    to {
+        visibility: hidden;
+        background: red;
+    }
+}
 body {
     background: #e4e5e6;
 }
